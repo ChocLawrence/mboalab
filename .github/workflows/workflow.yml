@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+         path: ./mboalab
 
       - name: Install and build
         run: npm install && npm run gh-build && cp dist/mboalab/index.html dist/mboalab/404.html
