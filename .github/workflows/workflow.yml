@@ -12,15 +12,15 @@ jobs:
     strategy:
       matrix:
         node-version: [14.15.4]
-    
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Install and build
-        working-directory: ./mboalab-2021
+        working-directory: ./mboalab
         run: npm install && npm run gh-build && cp dist/mboalab/index.html dist/mboalab/404.html
-      
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
