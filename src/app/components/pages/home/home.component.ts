@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.wowService.init();
   }
   classname = "footer-area footer-area-two";
-  ftbgimage = "/assets/img/footer-bg.jpg";
-  ftlogo = "/assets/img/logo-2.png";
+  ftbgimage = "assets/img/footer-bg.jpg";
+  ftlogo = "assets/img/logo-2.png";
   ftshape = "d-none";
 
   ngOnInit(): void {
