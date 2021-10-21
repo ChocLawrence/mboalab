@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
         let menu = this.core.decryptFromLocalStorage('menu');
 
         if (menu == "admin") {
-          this.destination = "/console";
+          this.destination = "/mboalab/console";
         } else if (menu == "user") {
-          this.destination = "/dashboard";
+          this.destination = "/mboalab/dashboard";
         }
 
         if (!this.core.isEmptyOrNull(this.destination)) {
