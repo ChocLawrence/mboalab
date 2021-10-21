@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
   redirectToDashboard(destination: string) {
     let timer = setTimeout(() => {
-      this.router.navigate([destination]);
+      window.location.href = "/mboalab"+ destination;
       clearTimeout(timer);
     }, 2000);
   }
