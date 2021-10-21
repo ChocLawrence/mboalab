@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     this.getTimezones();
     this.getLanguages();
     this.getCurrentUser();
-    //this.redirectToLogin();
+    this.redirectToLogin();
   }
   setAction(action: string) {
     this.action = action;
@@ -146,8 +146,12 @@ export class ProfileComponent implements OnInit {
 
   async getCurrentUser() {
 
-    this.user = this._core.decryptFromLocalStorage("currentUser");
-    this.getUserProfile();
+    if (this._core.loginUser && this._core.loginUser.user) {
+      this.user = this._core.loginUser.user;
+      if (this.user.profile == '1') {
+        this.getUserProfile();
+      }
+    }
   }
 
 
@@ -163,6 +167,10 @@ export class ProfileComponent implements OnInit {
         } else {
           this.preview = null;
         }
+
+        console.log(  this.userProfile)
+        console.log(  this.user)
+        console.log(  this.preview)
 
         this.loadingData = false;
       })
