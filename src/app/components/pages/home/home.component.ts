@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CoreService } from '../../../core/core.service';
 import { NgwWowService } from 'ngx-wow';
 import { Subscription } from 'rxjs';
 
@@ -9,8 +10,11 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  public role: any;
+  public loggedIn = false;
+
   private wowSubscription: Subscription;
-  constructor(private wowService: NgwWowService) {
+  constructor(private wowService: NgwWowService, public core: CoreService) {
     this.wowService.init();
   }
   classname = "footer-area footer-area-two";

@@ -7,7 +7,11 @@
         </div>
         <div class="col-md-7">
           <div class="card-body">
-            <div class="brand-wrapper">
+            <div
+              class="brand-wrapper pointer"
+              routerLink="/"
+              title="Go back to home"
+            >
               <img src="assets/img/logo-2.png" alt="logo" class="logo" />
             </div>
             <p class="login-card-description">Log into your account</p>
@@ -38,14 +42,22 @@
                   placeholder="Password"
                 />
               </div>
-              <input
+              <button
                 name="login"
                 [disabled]="!loginFormIsValid() || loading"
                 id="login"
-                class="btn btn-block login-btn mb-4"
                 type="submit"
-                value="Login"
-              />
+                class="btn btn-block login-btn mb-4 pointer"
+              >
+                Login &nbsp;
+                <div
+                  class="spinner-border float-right"
+                  role="status"
+                  *ngIf="loading"
+                >
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
             </form>
             <div class="form-row">
               <div class="col pull-left">

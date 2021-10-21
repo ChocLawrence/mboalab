@@ -54,16 +54,16 @@ export class UsersService {
     let params = new FormData();
 
     // These parameters are always passed
-    if (!this.core.isEmptyOrNull(dataObject.firstName)) {
-      params.append("firstname", dataObject.firstName);
+    if (!this.core.isEmptyOrNull(dataObject.firstname)) {
+      params.append("firstname", dataObject.firstname);
     }
 
-    if (!this.core.isEmptyOrNull(dataObject.lastName)) {
-      params.append("lastname", dataObject.lastName);
+    if (!this.core.isEmptyOrNull(dataObject.lastname)) {
+      params.append("lastname", dataObject.lastname);
     }
 
-    if (!this.core.isEmptyOrNull(dataObject.userName)) {
-      params.append("username", dataObject.userName);
+    if (!this.core.isEmptyOrNull(dataObject.username)) {
+      params.append("username", dataObject.username);
     }
 
     return this.core.makeRemoteRequest(url, "put", params, null);

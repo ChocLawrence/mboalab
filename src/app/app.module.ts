@@ -19,7 +19,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PreloaderComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,

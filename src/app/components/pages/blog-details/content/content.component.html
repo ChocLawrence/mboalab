@@ -1,84 +1,118 @@
-<section class="blog-area section-gap" *ngFor="let item of blogdetails">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="blog-dteails-content">
-                    <a routerLink="/blog/cat/{{cat.id}}" class="cat" *ngFor="let cat of getCategory(item.category)">
-                        {{cat.title}}
-                    </a>
-                    <h3 class="title">
-                        {{item.title}}
-                    </h3>
-                    <ul class="post-meta">
-                        <li><i class="fal fa-eye"></i> {{item.views}} Views</li>
-                        <li><i class="fal fa-comments"></i> {{item.reviews.length}} Comments</li>
-                        <li><i class="fal fa-calendar-alt"></i> {{item.postdate}}</li>
-                    </ul>
-                    <div [innerHtml]="item.htmldesc"></div>
-                    <div class="post-footer mt-40 mb-40">
-                        <div class="d-sm-flex justify-content-between">
-                            <div class="related-tag">
-                                <h5>Releted Tags</h5>
-                                <ul>
-                                    <li *ngFor="let tag of getBlogTags(item.tags)">
-                                        <a routerLink="/blog/tag/{{tag.id}}">{{tag.title}} </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="social-share">
-                                <h5>Social Share</h5>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-vk"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-blogger-b"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="post-nav">
-                            <div class="prev-post">
-                                <span>Prev Post</span>
-                                <h3><a routerLink="/blog-details/{{item.id}}">Tips On Minimalist</a></h3>
-                            </div>
-                            <div class="next-post">
-                                <span>Next Post</span>
-                                <h3><a routerLink="/blog-details/{{item.id}}">Less Is More</a></h3>
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="related-posts">
-                            <h3 class="related-title">Releted Post</h3>
-                            <div class="row">
-                                <!-- Data -->
-                                <div class="col-lg-6 col-md-6" *ngFor="let post of blogpost | slice:0:2">
-                                    <div class="related-post-box">
-                                        <div class="thumb" [style.background-image]="'url('+post.gridimg+')'"></div>
-                                        <div class="content">
-                                            <span class="date"><i class="fal fa-calendar-alt"></i>
-                                                {{post.postdate}}</span>
-                                            <h4><a routerLink="/blog-details/{{post.id}}">{{post.title |
-                                                    slice:0:45}}</a></h4>
-                                            <p>{{post.shortdesc | slice:0:70}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Data -->
-                            </div>
-                        </div>
-                        <div class="post-author" *ngFor="let author of getAuthor(item.author)">
-                            <div class="image">
-                                <img [src]="author.img" [alt]="author.name">
-                            </div>
-                            <div class="info">
-                                <span>Written by</span>
-                                <h2 class="name">{{author.name}}</h2>
-                                <p [innerHtml]="author.htmldesc | slice:0:100"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-template">
+<section class="blog-area section-gap" *ngIf="post">
+  <div class="container">
+    <div class="row banner" *ngIf="post.postimage">
+      <img [src]="post.postimage" alt="" width="auto" height="auto">
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="blog-dteails-content">
+          <a routerLink="/blog/{{ post.slug }}" class="cat">
+            {{ post.categoryname }}
+          </a>
+          <h3 class="title">
+            {{ post.title }}
+          </h3>
+          <ul class="post-meta">
+            <li><i class="fal fa-eye"></i> {{ post.views }} Views</li>
+            <li>
+              <i class="fal fa-comments"></i>
+              0 Comments
+            </li>
+            <li>
+              <i class="fal fa-calendar-alt"></i> {{ getDate(post.createdat) }}
+            </li>
+          </ul>
+          <div [innerHtml]="post.content" class="content"></div>
+          <div class="post-footer mt-40 mb-40">
+            <div class="d-sm-flex justify-content-between">
+              <div class="related-tag">
+                <h5>Related</h5>
+                <!-- <ul>
+                  <li *ngFor="let tag of getBlogTags(item.tags)">
+                    <a routerLink="/blog/tag/{{ tag.id }}">{{ tag.title }} </a>
+                  </li>
+                </ul> -->
+              </div>
+              <div class="social-share">
+                <h5>Social Share</h5>
+                <ul>
+                  <li>
+                    <a
+                      [href]="
+                        'https://www.facebook.com/sharer/sharer.php?u=https://choclawrence.github.io/mboalab' +
+                        route.url +
+                        '&t=' +
+                        post.content
+                      "
+                      onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                      target="_blank"
+                      title="Share on Facebook"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      [href]="
+                        'https://twitter.com/share?url=https://choclawrence.github.io/mboalab' +
+                        route.url +
+                        '&text=' +
+                        post.content
+                      "
+                      onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                      target="_blank"
+                      title="Share on Twitter"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      [href]="
+                        sanitization.bypassSecurityTrustUrl(
+                          'whatsapp://send?text=' + post.content
+                        )
+                      "
+                      target="_blank"
+                      title="Share on Whatsapp"
+                      data-action="share/whatsapp/share"
+                      ><i class="fab fa-whatsapp"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="divider"></div>
+            <div class="post-nav">
+              <div class="prev-post">
+                <span>Prev Post</span>
+                <h3>
+                  <a routerLink="/blog/{{ post.slug }}">Tips On Minimalist</a>
+                </h3>
+              </div>
+              <div class="next-post">
+                <span>Next Post</span>
+                <h3>
+                  <a routerLink="/blog/{{ post.slug }}">Less Is More</a>
+                </h3>
+              </div>
+            </div> -->
+            <div class="divider"></div>
+            <div class="post-author" *ngIf="userProfile">
+              <div class="image">
+                <img
+                  [src]="userImage ? userImage : default"
+                  [alt]="userProfile.username"
+                />
+              </div>
+              <div class="info">
+                <span>Written by</span>
+                <h4>
+                  {{ userProfile.firstname + " " + userProfile.lastname }}
+                </h4>
+                <p [innerHtml]="userProfile.bio | slice: 0:100" class="bio"></p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="comment-template">
                         <h3 class="template-title">{{item.reviews.length}} Comments</h3>
                         <ul class="comments-list">
                             <li *ngFor="let review of item.reviews">
@@ -118,29 +152,30 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-10">
-                <div class="blog-sidebar" [style.margin-bottom.px]="30" *ngFor="let author of getAuthor(item.author)">
-                    <div class="widget about-widget">
-                        <h4 class="widget-title">About Me</h4>
-                        <div class="about-contnent">
-                            <img [src]="author.img" [alt]="author.name">
-                            <h6 class="title">{{author.name}}</h6>
-                            <p [innerHtml]="author.htmldesc | slice:0:100"></p>
-                            <ul>
-                                <li *ngFor="let item of author.social">
-                                    <a routerLink="{{item.url}}">
-                                        <i [class]="item.icon"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <app-blogsidebar></app-blogsidebar>
-            </div>
+                    </div> -->
         </div>
+      </div>
+      <div class="col-lg-4 col-md-8 col-sm-10">
+        <div class="blog-sidebar" [style.margin-bottom.px]="30">
+          <div class="widget about-widget">
+            <h4 class="widget-title">About Author</h4>
+            <div class="about-contnent" *ngIf="userProfile">
+              <img
+                [src]="userImage ? userImage : default"
+                [alt]="userProfile.username"
+              />
+              <h6 class="title">
+                {{ userProfile.firstname + " " + userProfile.lastname }}
+              </h6>
+              <p [innerHtml]="userProfile.bio | slice: 0:100" class="bio"></p>
+              <ul>
+                <p></p>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <app-blogsidebar></app-blogsidebar>
+      </div>
     </div>
+  </div>
 </section>

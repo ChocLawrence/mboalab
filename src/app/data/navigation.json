@@ -29,16 +29,6 @@
                 "id": 5.1,
                 "link": "/blog-grid",
                 "linkText": "Blog Grid"
-            },
-            {
-                "id": 5.2,
-                "link": "/blog-standard",
-                "linkText": "Blog Standard"
-            },
-            {
-                "id": 5.3,
-                "link": "/blog-details/1",
-                "linkText": "Blog Details"
             }
         ]
     },

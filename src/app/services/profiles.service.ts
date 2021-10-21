@@ -39,6 +39,12 @@ export class ProfilesService {
   }
 
 
+  getProfile(username: any
+  ): Promise<any> {
+    let url = this.apiUrl + '' + username;
+
+    return this.core.makeRemoteRequest(url, "get", null, httpOptions);
+  }
 
   getUserProfile(
   ): Promise<any> {
@@ -91,6 +97,10 @@ export class ProfilesService {
 
     if (!this.core.isEmptyOrNull(dataObject.address)) {
       params.append("address", dataObject.address);
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.bio)) {
+      params.append("bio", dataObject.bio);
     }
 
     return this.core.makeRemoteRequest(url, "put", params, null);

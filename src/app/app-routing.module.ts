@@ -12,16 +12,16 @@ const routes: Routes = [
   { path: 'verification/:id', loadChildren: () => import('./components/pages/account-verification/account-verification.module').then(m => m.AccountVerificationModule) },
   { path: 'verify-email/:id', loadChildren: () => import('./components/pages/verify-email/verify-email.module').then(m => m.VerifyEmailModule) },
 
+  //Dashboards
+  { path: 'dashboard', loadChildren: () => import('./components/pages/user/user.module').then(m => m.UserModule), data: { breadcrumb: 'User' } },
+  { path: 'console', loadChildren: () => import('./components/pages/console/console.module').then(m => m.ConsoleModule), data: { breadcrumb: 'Admin' } },
+
   // About
   { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule), data: { breadcrumb: 'About Us' } },
   // Services
   { path: 'services', loadChildren: () => import('./components/pages/services/services.module').then(m => m.ServicesModule), data: { breadcrumb: 'Services' } },
   //{ path: 'service-details', loadChildren: () => import('./components/pages/service-details/service-details.module').then(m => m.ServiceDetailsModule), data: { breadcrumb: 'Service Details' } },
   // Pages
-  //{ path: 'case-study', loadChildren: () => import('./components/pages/case-study/case-study.module').then(m => m.CaseStudyModule), data: { breadcrumb: 'Case Study' } },
-  //{ path: 'case-details/:id', loadChildren: () => import('./components/pages/case-details/case-details.module').then(m => m.CaseDetailsModule), data: { breadcrumb: 'Case Details' } },
-  //{ path: 'comingsoon', loadChildren: () => import('./components/pages/coming-soon/coming-soon.module').then(m => m.ComingSoonModule), data: { breadcrumb: 'Coming Soon' } },
-  //{ path: 'error', loadChildren: () => import('./components/pages/error/error.module').then(m => m.ErrorModule), data: { breadcrumb: 'Error 404' } },
   { path: 'faq', loadChildren: () => import('./components/pages/faq/faq.module').then(m => m.FaqModule), data: { breadcrumb: "FAQ's" } },
 
   { path: 'privacy', loadChildren: () => import('./components/pages/privacy/privacy.module').then(m => m.PrivacyModule), data: { breadcrumb: 'Privacy' } },
@@ -34,10 +34,11 @@ const routes: Routes = [
 
   { path: 'blog-grid', loadChildren: () => import('./components/pages/blog-grid/blog-grid.module').then(m => m.BlogGridModule), data: { breadcrumb: 'Blog Grid' } },
   { path: 'blog-standard', loadChildren: () => import('./components/pages/blog-standard/blog-standard.module').then(m => m.BlogStandardModule), data: { breadcrumb: 'Blog Standard' } },
-  { path: 'blog-details/:id', loadChildren: () => import('./components/pages/blog-details/blog-details.module').then(m => m.BlogDetailsModule), data: { breadcrumb: 'Blog Details' } },
+  { path: 'blog/:id', loadChildren: () => import('./components/pages/blog-details/blog-details.module').then(m => m.BlogDetailsModule), data: { breadcrumb: 'Blog Details' } },
   // Contact
   { path: 'contact', loadChildren: () => import('./components/pages/contact/contact.module').then(m => m.ContactModule), data: { breadcrumb: 'Contact Us' } },
-  { path: '**', loadChildren: () => import('./components/pages/error/error.module').then(m => m.ErrorModule), data: { breadcrumb: 'Error 404' } }
+  { path: '**', loadChildren: () => import('./components/pages/error/error.module').then(m => m.ErrorModule), data: { breadcrumb: 'Error 404' } },
+
 ];
 
 @NgModule({

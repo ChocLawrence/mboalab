@@ -4,14 +4,18 @@
       <div class="row no-gutters">
         <div class="col-md-5">
           <img
-            src="assets/img/login.jpg"
+            src="assets/img/signup.jpg"
             alt="signup"
             class="signup-card-img"
           />
         </div>
         <div class="col-md-7">
           <div class="card-body">
-            <div class="brand-wrapper">
+            <div
+              class="brand-wrapper pointer"
+              routerLink="/"
+              title="Go back to home"
+            >
               <img src="assets/img/logo-2.png" alt="logo" class="logo" />
             </div>
             <p class="signup-card-description">Sign up to MboaLab</p>
@@ -109,11 +113,7 @@
                     required
                   />
                   <label class="form-check-label" for="invalidCheck">
-                    <a
-                      routerLink="/privacy"
-                      target="_blank"
-                      class="black"
-                    >
+                    <a routerLink="/privacy" target="_blank" class="black">
                       Agree to terms and conditions
                     </a>
                   </label>
@@ -122,11 +122,26 @@
                   </div>
                 </div>
               </div>
-              <input [disabled]="!signupFormIsValid() || loading" name="signup" id="signup" class="btn btn-block signup-btn mb-4" type="submit" value="Signup">
+              <button
+                name="signup"
+                [disabled]="!signupFormIsValid() || loading"
+                id="signup"
+                type="submit"
+                class="btn btn-block login-btn mb-4 pointer signup"
+              >
+                Signup &nbsp;
+                <div
+                  class="spinner-border float-right"
+                  role="status"
+                  *ngIf="loading"
+                >
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
             </form>
             <div class="form-row">
-                Already have an account? &nbsp;
-                <a routerLink="/login" class="text-reset">Login here</a>
+              Already have an account? &nbsp;
+              <a routerLink="/login" class="text-reset">Login here</a>
             </div>
           </div>
         </div>

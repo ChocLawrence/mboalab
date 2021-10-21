@@ -1,9 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("./assets/css/magnific-popup.css");
+
 button:focus,
 :focus {
   outline: none !important;
   box-shadow: none !important;
+}
+.photo-grid {
+  border-radius: 25%;
+  width: 30px;
+  height: 30px;
+}
+.dx-datagrid,
+.dx-gridbase-container,
+.dx-datagrid-borders {
+  padding: 0.3em;
+}
+.hidden {
+  display: none;
+}
+
+.mainActions {
+  position: absolute;
+  right: 0;
+  padding: 0 10px;
+  display: none;
+}
+.mainActions ul {
+  list-style: none;
+  margin-bottom: 0;
+  display: inline-block;
+  padding-inline-start: 0;
+  background: #fafafa;
+}
+.mainActions li {
+  display: inline;
+  margin-left: 25px;
+  opacity: 0.7;
+}
+tr:hover .mainActions {
+  display: block;
+}
+tr:hover .mainActions li:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.pointer {
+  cursor: pointer;
 }
 .testimonial-box .author .photo img,
 .testimonial-box .author .photo {

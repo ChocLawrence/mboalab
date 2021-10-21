@@ -66,12 +66,32 @@ export class PostsService {
     return this.core.makeRemoteRequest(url, "post", params, this.httpOptions);
   }
 
+  getNextPost(id: any
+  ): Promise<any> {
+    let url = this.apiUrl + 'next/' + id;
 
+    return this.core.makeRemoteRequest(url, "get", null, httpOptions);
+  }
+
+
+  getPreviousPost(id: any
+  ): Promise<any> {
+    let url = this.apiUrl + 'previous/' + id;
+
+    return this.core.makeRemoteRequest(url, "get", null, httpOptions);
+  }
 
 
   getSinglePost(id: any
   ): Promise<any> {
     let url = this.apiUrl + '' + id;
+
+    return this.core.makeRemoteRequest(url, "get", null, httpOptions);
+  }
+
+  getSinglePostBySlug(slug: string
+  ): Promise<any> {
+    let url = this.apiUrl + 'slug/' + slug;
 
     return this.core.makeRemoteRequest(url, "get", null, httpOptions);
   }

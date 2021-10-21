@@ -7057,7 +7057,7 @@ div#preloader .loader-cubes .loader-cube .loader-cube3::before {
 	border: 0;
 	border-bottom: 2px solid #e3eeff;
 	color: #616161;
-	text-transform: capitalize;
+	text-transform: none;
 	padding: 0;
 }
 

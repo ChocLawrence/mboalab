@@ -42,7 +42,6 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('logo',this.logo);
   }
 
 }

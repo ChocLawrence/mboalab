@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UrlsService {
   public get apiUrl() {
-    return 'http://localhost:5000/';   //https://bankwire-api.herokuapp.com/ http://localhost:5000/ https://api.bankwire.org/
+    return 'https://mboalab-api.herokuapp.com/';   //https://mboalab-api.herokuapp.com/ http://localhost:5000/ https://api.mboalab.org/
   }
   constructor() { }
 }

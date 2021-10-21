@@ -2,15 +2,15 @@
     <div class="container">
         <div class="blog-grid-items row justify-content-center">
             <!-- Data -->
-            <div class="col-lg-4 col-md-6 col-sm-8" *ngFor="let item of blogpost | paginate: { itemsPerPage: 6, currentPage: page }">
+            <div class="col-lg-4 col-md-6 col-sm-8" *ngFor="let post of posts | paginate: { itemsPerPage: 6, currentPage: page }">
                 <div class="single-blog-grid mb-30">
-                    <img [src]="item.gridimg" [alt]="item.title">
-                    <a class="cat" routerLink="/blog/cat/{{cat.id}}" *ngFor="let cat of getCategories(item.category) | slice:0:1">{{cat.title}}</a>
+                    <img [src]="post.postimage" [alt]="post.title">
+                    <a class="cat" routerLink="/blog/cat/{{post._id}}">{{post.categoryname}}</a>
                     <div class="blog-grid-overlay">
-                        <h5 class="title"><a routerLink="/blog-details/{{item.id}}">{{item.title | slice:0:40}}</a></h5>
+                        <h5 class="title"><a routerLink="/blog/{{post.slug}}">{{post.title | slice:0:40}}</a></h5>
                         <ul class="post-meta">
-                            <li><a routerLink="/blog-details/{{item.id}}"><i class="fal fa-calendar-alt"></i> <span> {{item.postdate}}</span></a></li>
-                            <li><a routerLink="/blog-details/{{item.id}}"><i class="fal fa-heart"></i></a></li>
+                            <li><a routerLink="/blog/{{post.slug}}"><i class="fal fa-calendar-alt"></i>&nbsp; <span> {{getDate(post.createdat)}}</span></a></li>
+                            <li><a routerLink="/blog/{{post.slug}}"><i class="fal fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>

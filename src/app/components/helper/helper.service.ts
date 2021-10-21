@@ -1,4 +1,5 @@
 import { Injectable, HostListener, AfterViewInit, OnInit } from '@angular/core';
+import { CoreService } from 'src/app/core/core.service';
 import navigation from '../../data/navigation.json';
 import $ from 'jquery';
 import 'magnific-popup';
@@ -7,9 +8,13 @@ import 'magnific-popup';
   providedIn: 'root'
 })
 export class HelperService implements AfterViewInit, OnInit {
+
   windowScrolled: boolean | undefined;
   public navigation = navigation;
-  constructor() { }
+
+  constructor( private core: CoreService){
+  }
+
   // Sticky Nav
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -25,9 +30,9 @@ export class HelperService implements AfterViewInit, OnInit {
   toggleSearch() {
     this.searchMethod = !this.searchMethod;
   }
-  // Mobile 
+  // Mobile
   open: boolean = false;
-  trigger(item: { open: boolean; }){
+  trigger(item: { open: boolean; }) {
     item.open = !item.open;
   }
   // Add class on resize and onload window
@@ -38,9 +43,14 @@ export class HelperService implements AfterViewInit, OnInit {
     this.innerWidth = window.innerWidth;
     this.visible = this.innerWidth >= this.breakpoint;
   }
+
+  role = this.core.isLoggedIn();
+
   ngOnInit(): void {
     this.detectHeader();
   }
+
+
   ngAfterViewInit(): void {
     ($('.popup-youtube') as any).magnificPopup({
       type: 'iframe'
@@ -53,4 +63,5 @@ export class HelperService implements AfterViewInit, OnInit {
       mainClass: 'mfp-fade',
     });
   }
+
 }

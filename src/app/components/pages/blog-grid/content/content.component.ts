@@ -1,81 +1,98 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; 
+import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CoreService } from '../../../../core/core.service';
+import { PostsService } from '../../../../services/posts.service';
+import { CategoriesService } from '../../../../services/categories.service';
 import blog from '../../../../data/blog/blog.json';
 
 import blogcategory from '../../../../data/blog/category.json'
 import blogtags from '../../../../data/blog/tags.json'
 import author from '../../../../data/team.json';
+import { DxDataGridComponent } from "devextreme-angular";
+import _ from 'lodash';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements AfterContentInit {
+export class ContentComponent implements AfterContentInit, OnInit {
 
   // pagination
   page: number = 1;
-  constructor(private router: ActivatedRoute) { }
-  public blogpost = blog;
-  public author = author;
-  public blogtags = blogtags;
-  public blogcategory = blogcategory;
-  public getCategories(items: string | any[]) {
-    var elems = blogcategory.filter((item: { id: string; }) => {
-      return items.includes(item.id)
-    });
-    return elems;
+  public default = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+
+  public postsPerPage: any;
+  public loadingData = false;
+  public loading = false;
+
+  public categories: any = [];
+  public categoryCount = 0;
+  public posts: any = [];
+  public postCount = 0;
+
+  constructor(private router: ActivatedRoute,
+    public _core: CoreService,
+    private categoriesService: CategoriesService,
+    private postsService: PostsService) { }
+
+
+  ngOnInit(): void {
+
   }
 
-  // Category Filter
-  public setCategory(id: any) {
-    this.blogcategory = id;
+  ngAfterContentInit(): void {
+    this.getCategories();
+    this.getPosts();
   }
-  public getCategory() {
-    return this.blogcategory;
-  }
-  public getPostsByCategory(catId) {
-    return this.blogpost = blog.filter(item => { return item.category.includes(parseInt(catId)) });
-  }
-  // Tag Filter
-  public setTag(id: any) {
-    this.blogtags = id;
-  }
-  public getTag() {
-    return this.blogtags;
-  }
-  public getPostsByTags(tagId) {
-    return this.blogpost = blog.filter(item => { return item.tags.includes(parseInt(tagId)) });
-  }
-  // Author Filter
-  public setAuthor(id: any) {
-    this.author = id;
-  }
-  public getAuthorPost() {
-    return this.author;
-  }
-  public getPostsByAuthors(authorId) {
-    return this.blogpost = blog.filter(item => { return item.author.includes(parseInt(authorId)) });
-  }
-  // Fetch All filter
-  public setPosts() {
-    var postsByCategory = this.getCategory() != undefined ? this.getPostsByCategory(this.getCategory()) : '',
-      postsByTags = this.getTag() != undefined ? this.getPostsByTags(this.getTag()) : '',
-      postsByAuthor = this.getAuthorPost() != undefined ? this.getPostsByAuthors(this.getAuthorPost()) : '';
 
-    if ((postsByCategory != '' || postsByCategory != undefined || postsByCategory != null) && postsByCategory.length > 0) {
-      this.blogpost = postsByCategory;
-    } else if ((postsByTags != '' || postsByTags != undefined || postsByTags != null) && postsByTags.length > 0) {
-      this.blogpost = postsByTags;
-    } else if ((postsByAuthor != '' || postsByAuthor != undefined || postsByAuthor != null) && postsByAuthor.length > 0) {
-      this.blogpost = postsByAuthor;
+
+  async getCategories() {
+    this.loadingData = true;
+
+    this.categoriesService
+      .getCategories()
+      .then(async (category) => {
+        this.categoryCount = category.count;
+        let categories = this._core.normalizeKeys(category.categories);
+
+        this.categories = _.orderBy(categories, ['created_at'], ['desc']);;
+
+        this.loadingData = false;
+      })
+      .catch(e => {
+        this.loadingData = false;
+        this._core.handleError(e);
+      });
+  }
+
+
+
+  getDate(date: string) {
+    if (!this._core.isEmptyOrNull(date)) {
+      return this._core.formatDate(date);
+    } else {
+      return "";
     }
   }
-  ngAfterContentInit(): void {
-    this.setCategory(this.router.snapshot.params.catId);
-    this.setTag(this.router.snapshot.params.tagId);
-    this.setAuthor(this.router.snapshot.params.authorId);
-    this.setPosts();
+
+
+  async getPosts() {
+    this.loadingData = true;
+
+    this.postsService
+      .getPosts()
+      .then(async (post) => {
+        this.postCount = post.count;
+        let posts = this._core.normalizeKeys(post.posts);
+        this.posts = _.orderBy(posts, ['createdat'], ['desc']);
+        this.loadingData = false;
+      })
+      .catch(e => {
+        this.loadingData = false;
+        this._core.handleError(e);
+      });
   }
+
 
 }

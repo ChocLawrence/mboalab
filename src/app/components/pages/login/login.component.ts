@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         if (menu == "admin") {
           this.destination = "/console";
         } else if (menu == "user") {
-          this.destination = "/creator";
+          this.destination = "/dashboard";
         }
 
         if (!this.core.isEmptyOrNull(this.destination)) {

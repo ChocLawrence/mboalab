@@ -364,6 +364,22 @@ export class CoreService {
     );
   }
 
+  isLoggedIn(){
+    let user = this.decryptFromLocalStorage('currentUser');
+    if (!this.isEmptyOrNull(user)) {
+
+      if (user.user.role == 'user' || user.user.role == 'admin') {
+        let role = user.user.role;
+        return role;
+      } else {
+        return null
+      }
+
+    } else {
+      return null
+    }
+  }
+
   decryptFromLocalStorage(key: any, json = true) {
     let encryptedKey = this.encryptData(key, this.encryptDecryptKeyPassword);
     if (!this.isEmptyOrNull(localStorage.getItem(encryptedKey))) {
