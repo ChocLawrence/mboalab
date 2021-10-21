@@ -47,11 +47,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.menu = this._core.pageMenu;
-    this.getCurrentUser();
-    this.redirectToLogin();
     this.getCountries();
     this.getTimezones();
     this.getLanguages();
+    this.getCurrentUser();
+    this.redirectToLogin();
   }
   setAction(action: string) {
     this.action = action;
