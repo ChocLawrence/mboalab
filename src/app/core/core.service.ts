@@ -34,8 +34,8 @@ export class CoreService {
   public footerHeight = 30;
   public headerHeight = 40;
   // For Encryption/Decryption
-  public encryptDecryptValuePassword = "ChocInspired.2021!";
-  public encryptDecryptKeyPassword = "ChocInspired.2021!";
+  public encryptDecryptValuePassword = "MboaLab.2021!";
+  public encryptDecryptKeyPassword = "MboaLab.2021!";
   get salt() {
     return CryptoJS.enc.Hex.parse("4acfedc7dc72a9003a0dd721d7642bde");
   }

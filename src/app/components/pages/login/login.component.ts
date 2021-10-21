@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     let timer = setTimeout(() => {
       this.router.navigate([destination]);
       clearTimeout(timer);
-    }, 10);
+    }, 2000);
   }
 
 }

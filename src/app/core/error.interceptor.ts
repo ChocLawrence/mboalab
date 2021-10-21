@@ -23,7 +23,7 @@
          document.write('<style type="text/undefined">');
          window.location.reload();
          localStorage.clear();
-         window.location.href = "/login";
+         window.location.href = "/mboalab/login";
          //this.authenticationService.logout();
        }
 
