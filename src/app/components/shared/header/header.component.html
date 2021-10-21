@@ -123,26 +123,6 @@
               </li>
             </ul>
           </li>
-          <li class="menu-item">
-            <a
-              *ngIf="!role"
-              class="nav-link btn btn-primary login-button"
-              routerLink="/login"
-              >Login</a
-            >
-            <a
-              *ngIf="role == 'user'"
-              class="nav-link btn btn-primary login-button"
-              routerLink="/dashboard"
-              >Dashboard</a
-            >
-            <a
-              *ngIf="role == 'admin'"
-              class="nav-link btn btn-primary login-button"
-              routerLink="/console"
-              >Console</a
-            >
-          </li>
           <!-- Data -->
         </ul>
         <a href="javascript:void(0)" class="nav-close" (click)="toggleNav()"
