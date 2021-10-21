@@ -168,10 +168,6 @@ export class ProfileComponent implements OnInit {
           this.preview = null;
         }
 
-        console.log(  this.userProfile)
-        console.log(  this.user)
-        console.log(  this.preview)
-
         this.loadingData = false;
       })
       .catch(e => {
