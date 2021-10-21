@@ -99,6 +99,9 @@ body {
   .signup-card-footer-text {
     margin-bottom: 24px;
   }
+  .brand-wrapper {
+    text-align: center;
+  }
 }
 .signup-card-footer-nav a {
   font-size: 14px;
