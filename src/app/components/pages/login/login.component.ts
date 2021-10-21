@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
         let menu = this.core.decryptFromLocalStorage('menu');
 
         if (menu == "admin") {
-          this.destination = "/mboalab/console";
+          this.destination = "/console";
         } else if (menu == "user") {
-          this.destination = "/mboalab/dashboard";
+          this.destination = "/dashboard";
         }
 
         if (!this.core.isEmptyOrNull(this.destination)) {
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
   redirectToDashboard(destination: string) {
     let timer = setTimeout(() => {
-      window.location.href = destination;
+      this.router.navigate([destination]);
       clearTimeout(timer);
     }, 10);
   }

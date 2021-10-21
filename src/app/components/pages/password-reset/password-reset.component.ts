@@ -44,7 +44,7 @@ export class PasswordResetComponent implements OnInit {
         this.core.showSuccess("Success", "Check Email for reset link...");
         //localStorage.setItem("page","menu");
         setTimeout(function () {
-          window.location.href = "/login";
+          this.router.navigate(["/login"]);
         }, 2000);
         this.resetForm.reset();
         this.loading = false;
@@ -69,7 +69,7 @@ export class PasswordResetComponent implements OnInit {
       this.authenticationservice.resetPasswordNow(values).then(r => {
         this.core.showSuccess("Success", "Password reset successfully");
         setTimeout(function () {
-          window.location.href = "/login";
+          this.router.navigate(["/login"]);
         }, 3000);
         this.changePasswordForm.reset();
         this.loading = false;

@@ -144,6 +144,6 @@ export class AuthenticationService {
 
   onLogout() {
     localStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/mboalab/login";
   }
 }
