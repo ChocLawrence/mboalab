@@ -25,6 +25,10 @@ export class PostsComponent implements OnInit {
   public postImagePreview: any;
   public PostImageDefault = 'assets/img/contact-thumb.jpg';
 
+  public defaultStartDate = "";
+  public defaultEndDate = "";
+  public defaultStatus = "all";
+
   public thePost: any;
   public origin = 'posts';
   public postModalAction = '';
@@ -67,8 +71,14 @@ export class PostsComponent implements OnInit {
   async getPosts() {
     this.loadingData = true;
 
+    let data = {
+      start: this.defaultStartDate,
+      end: this.defaultEndDate,
+      status: this.defaultStatus
+    }
+
     this.postsService
-      .getPosts()
+      .getPosts(data)
       .then(async (Post) => {
         this.PostCount = Post.count;
         let posts = this._core.normalizeKeys(Post.posts);

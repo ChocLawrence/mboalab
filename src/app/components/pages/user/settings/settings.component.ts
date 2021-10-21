@@ -113,7 +113,7 @@ export class SettingsComponent implements OnInit {
     this.menu = this._core.pageMenu;
     this.initProfileForm();
     this.redirectToLogin();
-    this.getUnreadNotifications();
+    //this.getUnreadNotifications();
   }
 
   private getDismissReason(reason: any): string {

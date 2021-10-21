@@ -26,6 +26,11 @@ export class ContentComponent implements AfterContentInit, OnInit {
   public loadingData = false;
   public loading = false;
 
+  public defaultStartDate = "";
+  public defaultEndDate = "";
+  public defaultStatus = "all";
+
+
   public categories: any = [];
   public categoryCount = 0;
   public posts: any = [];
@@ -80,8 +85,14 @@ export class ContentComponent implements AfterContentInit, OnInit {
   async getPosts() {
     this.loadingData = true;
 
+    let data = {
+      start: this.defaultStartDate,
+      end: this.defaultEndDate,
+      status: this.defaultStatus
+    }
+
     this.postsService
-      .getPosts()
+      .getPosts(data)
       .then(async (post) => {
         this.postCount = post.count;
         let posts = this._core.normalizeKeys(post.posts);

@@ -67,8 +67,14 @@ export class PostsComponent implements OnInit {
   async getPosts() {
     this.loadingData = true;
 
+    let user = this._core.loginUser.user._id;
+
+    let data = {
+      author: user ? user : null
+    }
+
     this.postsService
-      .getPosts()
+      .getPosts(data)
       .then(async (post) => {
         this.postCount = post.count;
         let posts = this._core.normalizeKeys(post.posts);

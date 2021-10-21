@@ -30,10 +30,35 @@ export class PostsService {
     this.httpOptions = this.core.httpOptions;
   }
 
-
-  getPosts(
+  getPosts(dataObject: any
   ): Promise<any> {
-    let url = this.apiUrl;
+    let url = this.apiUrl + '?';
+
+
+    if (!this.core.isEmptyOrNull(dataObject.start)) {
+      url += `&start=${encodeURIComponent(dataObject.start)}`
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.end)) {
+      url += `&end=${encodeURIComponent(dataObject.end)}`
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.status)) {
+      url += `&status=${encodeURIComponent(dataObject.status)}`
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.author)) {
+      url += `&author=${encodeURIComponent(dataObject.author)}`
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.category)) {
+      url += `&category=${encodeURIComponent(dataObject.category)}`
+    }
+
+    if (!this.core.isEmptyOrNull(dataObject.count)) {
+      url += `&count=${encodeURIComponent(dataObject.count)}`
+    }
+
     return this.core.makeRemoteRequest(url, "get", null, httpOptions);
   }
 
