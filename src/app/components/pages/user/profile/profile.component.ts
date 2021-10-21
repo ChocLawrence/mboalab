@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     this.getTimezones();
     this.getLanguages();
     this.getCurrentUser();
-    this.redirectToLogin();
+    //this.redirectToLogin();
   }
   setAction(action: string) {
     this.action = action;
@@ -146,13 +146,8 @@ export class ProfileComponent implements OnInit {
 
   async getCurrentUser() {
 
-    if (this._core.loginUser && this._core.loginUser.user) {
-      this.user = this._core.loginUser.user;
-
-      if (this.user.profile == '1') {
-        this.getUserProfile();
-      }
-    }
+    this.user = this._core.decryptFromLocalStorage("currentUser");
+    this.getUserProfile();
   }
 
 

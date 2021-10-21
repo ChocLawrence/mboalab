@@ -128,6 +128,15 @@ export class CoreService {
   ) {
     this.apiUrl = urlService.apiUrl;
 
+    if (!this.isEmptyOrNull(this.decryptFromLocalStorage("menu"))) {
+      this.pageMenu = this.decryptFromLocalStorage("menu");
+    }
+
+    if (!this.isEmptyOrNull(this.decryptFromLocalStorage("currentUser"))) {
+      this.loginUser = this.decryptFromLocalStorage("currentUser");
+    }
+
+
   }
 
   ngOnInit() { }
@@ -137,21 +146,6 @@ export class CoreService {
     if (this.isOnline) { return true; }
     return false;
   }
-
-  initialize() {
-
-
-    if (!this.isEmptyOrNull(this.decryptFromLocalStorage("menu"))) {
-      this.pageMenu = this.decryptFromLocalStorage("menu");
-    }
-
-    if (!this.isEmptyOrNull(this.decryptFromLocalStorage("currentUser"))) {
-      this.loginUser = this.decryptFromLocalStorage("currentUser");
-    }
-
-  }
-
-
   showSuccess(title: string, message: string) {
     this.toastr.success(title, message);
   }
