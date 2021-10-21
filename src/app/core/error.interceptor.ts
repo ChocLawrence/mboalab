@@ -4,30 +4,30 @@
  * can be displayed to the user.
  */
 
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+ import { Injectable } from '@angular/core';
+ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+ import { Observable, throwError } from 'rxjs';
+ import { catchError } from 'rxjs/operators';
 
-import { AuthenticationService } from '../services/authentication.service';
+ import { AuthenticationService } from '../services/authentication.service';
 
-@Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) { }
+ @Injectable()
+ export class ErrorInterceptor implements HttpInterceptor {
+   constructor(private authenticationService: AuthenticationService) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(catchError(err => {
+   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+     return next.handle(request).pipe(catchError(err => {
 
-      if (err.status === 403) {
-        // auto logout if 403 response returned from api
-        document.write('<style type="text/undefined">');
-        window.location.reload();
-        localStorage.clear();
-        window.location.href = "/mboalab/login";
-        //this.authenticationService.logout();
-      }
+       if (err.status === 403) {
+         // auto logout if 403 response returned from api
+         document.write('<style type="text/undefined">');
+         window.location.reload();
+         localStorage.clear();
+         window.location.href = "/login";
+         //this.authenticationService.logout();
+       }
 
-      return throwError(err);
-    }))
-  }
-}
+       return throwError(err);
+     }))
+   }
+ }
