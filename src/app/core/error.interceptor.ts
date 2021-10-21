@@ -24,6 +24,7 @@
          window.location.reload();
          localStorage.clear();
          window.location.href = "/mboalab/login";
+         console.log('error>>');
          //this.authenticationService.logout();
        }
 

@@ -145,12 +145,14 @@ export class ProfileComponent implements OnInit {
   }
 
   async getCurrentUser() {
-    this.user = this._core.loginUser.user;
 
-    if (this.user.profile == '1') {
-      this.getUserProfile();
+    if (this._core.loginUser && this._core.loginUser.user) {
+      this.user = this._core.loginUser.user;
+
+      if (this.user.profile == '1') {
+        this.getUserProfile();
+      }
     }
-
   }
 
 
