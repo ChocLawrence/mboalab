@@ -128,6 +128,19 @@ export class CoreService {
   ) {
     this.apiUrl = urlService.apiUrl;
 
+  }
+
+  ngOnInit() { }
+
+  checkIfOnline() {
+    if (!this.isOnline) { this.showError("Error", "You are currently offline!"); return false; }
+    if (this.isOnline) { return true; }
+    return false;
+  }
+
+  initialize() {
+
+
     if (!this.isEmptyOrNull(this.decryptFromLocalStorage("menu"))) {
       this.pageMenu = this.decryptFromLocalStorage("menu");
     }
@@ -138,13 +151,6 @@ export class CoreService {
 
   }
 
-  ngOnInit() { }
-
-  checkIfOnline() {
-    if (!this.isOnline) { this.showError("Error", "You are currently offline!"); return false; }
-    if (this.isOnline) { return true; }
-    return false;
-  }
 
   showSuccess(title: string, message: string) {
     this.toastr.success(title, message);
@@ -364,7 +370,7 @@ export class CoreService {
     );
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     let user = this.decryptFromLocalStorage('currentUser');
     if (!this.isEmptyOrNull(user)) {
 
