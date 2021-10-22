@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from "ngx-loading";
 import { DxDataGridModule, DxTooltipModule, DxTemplateModule } from "devextreme-angular";
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
@@ -36,6 +37,15 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
     NgbAlertModule,
     NgbDatepickerModule,
     NgbModalModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.4)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff',
+      fullScreenBackdrop: true
+    }),
     NgbTooltipModule,
     NgbPopoverModule,
     NgbModule,
