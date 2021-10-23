@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { CKEditorModule } from 'ng2-ckeditor';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from "ngx-loading";
 import { DxDataGridModule, DxTooltipModule, DxTemplateModule } from "devextreme-angular";
 import { ConsoleRoutingModule } from './console-routing.module';
@@ -35,6 +36,7 @@ import { SubscribersComponent } from './subscribers/subscribers.component';
     ConsoleRoutingModule,
     SharedModule,
     FormsModule,
+    CKEditorModule,
     NgbDropdownModule,
     NgbButtonsModule,
     NgbAlertModule,
