@@ -61,9 +61,10 @@ export class AccountVerificationComponent implements OnInit {
         this.loadingData = false;
       })
       .catch(e => {
-        this.loading = false;
         this.verification = false;
         this.timer(1);
+        this.loading = false;
+        this.loadingData = false;
         this.core.handleError(e);
       });
 
