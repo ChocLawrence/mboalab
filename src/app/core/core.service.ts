@@ -154,17 +154,6 @@ export class CoreService {
     this.toastr.error(title, message);
   }
 
-  setCorrectUrl(destination) {
-    let url = location.href;
-    let returnUrl = "";
-    if (url.includes("localhost")) {
-      returnUrl = destination;
-    } else if (url.includes("choclawrence.github.io/mboalab")) {
-      returnUrl = destination;
-    }
-    return returnUrl;
-  }
-
   getStartDate(endDateString: any, duration = this.defaultDateDuration): Date {
     let endDate = new Date(endDateString);
     let startDate = new Date(
