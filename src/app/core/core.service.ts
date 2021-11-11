@@ -160,7 +160,7 @@ export class CoreService {
     if (url.includes("localhost")) {
       returnUrl = destination;
     } else if (url.includes("choclawrence.github.io/mboalab")) {
-      returnUrl = "mboalab/" + destination;
+      returnUrl = destination;
     }
     return returnUrl;
   }
